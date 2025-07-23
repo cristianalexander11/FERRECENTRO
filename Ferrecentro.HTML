@@ -1,0 +1,192 @@
+<!DOCTYPE html>  
+<html lang="es"> <!-- idioma  -->
+<head>
+    <meta charset="UTF-8"> <!-- tildes  -->
+    <title> Ferrecentro  </title>  <!--  titulo o nombre de la pagina -->
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        header {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmkka0JpASPCc1qouQw-oLmwByLxXa7uFgCA&s');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 20px;
+            text-align: center; 
+        }
+        header h1 {
+            background-color: rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+        .contenedor {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .producto {
+            background-color: white;
+            width: 300px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .producto:hover {
+            transform: scale(1.03);
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        h2 {
+            font-size: 20px;
+            color: #333;
+        }
+        p {
+            font-size: 14px;
+            color: #555;
+        }
+        .boton-compra {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .boton-compra:hover {
+            background-color: #219150;
+        }
+        .contacto {
+            text-align: center;
+            padding: 20px;
+            background-color: #ecf0f1;
+        }
+        .contacto a {
+            text-decoration: none;
+            margin: 0 15px;
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        .contacto a:hover {
+            color: #2980b9;
+        }
+
+        /* Estilos para ventana emergente */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+        .popup-contenido {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            animation: entrada 0.5s ease;
+        }
+        .popup-contenido img {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+        .popup-contenido h2 {
+            margin: 0 0 10px 0;
+        }
+        .cerrar {
+            margin-top: 15px;
+            padding: 8px 20px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        @keyframes entrada {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>FERRECENTRO</h1>
+</header>
+
+<section class="contenedor">
+
+    <div class="producto">
+        <img src="https://ferreteriaelvapor.com/wp-content/uploads/2015/06/carretilla-mano.jpg" alt="carreta truper">
+        <h2>Carreta</h2>
+        <p><strong>Q.500.00</strong></p>
+        <p>4.5 FT3</p>
+        <button class="boton-compra" onclick="mostrarPopup('HP ProBook 450')">Comprar</button>
+    </div>
+
+    <div class="producto">
+	    <img src="data:image/jpeg;base64,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" alt="pala pretul">
+        <h2> PALA</h2>
+        <p><strong>Q.120.00</strong></p>
+        <p>redondo mango de madera 28"</p>
+        <button class="boton-compra" onclick="mostrarPopup('Dell Inspiron 14')">Comprar</button>
+    </div>
+
+    <div class="producto">
+	    <img src="data:image/jpeg;base64,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" alt="azadon lane">
+        <h2>azadon lane</h2>
+        <p><strong>Q.150.00</strong></p>
+        <p>1.8 lb de mango de madera</p>
+        <button class="boton-compra" onclick="mostrarPopup('Lenovo IdeaPad 3')">Comprar</button>
+    </div>
+
+</section>
+
+<div class="contacto">
+    <h3>Contáctanos</h3>
+    <a href="https://wa.me/30801130" target="_blank">📱 WhatsApp</a>
+    <a href="alexanderjosebaten@gmail.com">📧 Correo</a>
+    <a href="tel:+50247494276">📞 Llamada</a>
+</div>
+
+
+<div class="popup" id="popup">
+    <div class="popup-contenido">
+        <img src="https://i.imgur.com/U9dFIdh.png" alt="Éxito">
+        <h2>¡Compra realizada!</h2>
+        <p id="mensajeProducto"></p>
+        <button class="cerrar" onclick="cerrarPopup()">Aceptar</button>
+    </div>
+</div>
+
+<script>
+    function mostrarPopup(producto) {
+        document.getElementById("mensajeProducto").innerText = "Has comprado: " + producto + ". Te contactaremos pronto.";
+        document.getElementById("popup").style.display = "flex";
+    }
+
+    function cerrarPopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
